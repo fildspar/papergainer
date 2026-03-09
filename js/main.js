@@ -118,19 +118,20 @@ function renderFileList(files) {
       <button class="file-item__remove btn btn--ghost btn--sm" data-idx="${i}">✕</button>
     </div>
   `).join('');
-
-  listEl.addEventListener('click', e => {
+  // 用 onclick 替代 addEventListener，避免多次渲染时事件重复注册
+  listEl.onclick = e => {
     const btn = e.target.closest('[data-idx]');
     if (!btn) return;
     selectedFiles.splice(parseInt(btn.dataset.idx), 1);
     if (selectedFiles.length === 0) {
       listEl.classList.add('hidden');
+      listEl.onclick = null;
       const analyzeBtn = document.querySelector('#pg-analyze-btn');
       if (analyzeBtn) analyzeBtn.disabled = true;
     } else {
       renderFileList(selectedFiles);
     }
-  });
+  };
 }
 
 /** 开始分析（支持批量） */
