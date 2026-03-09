@@ -1,0 +1,320 @@
+/**
+ * PaperGainer - 基础样式与CSS变量
+ * 低饱和度彩色双主题系统
+ */
+
+/* ===== CSS 变量：亮色主题（默认）===== */
+:root {
+  /* 背景层次：米白 → 浅灰蓝 → 白卡片 */
+  --bg: #f7f7f5;
+  --bg-secondary: #eeeef0;
+  --bg-card: #ffffff;
+  --bg-hover: #e8e8ec;
+  --border: #dddde0;
+  --border-focus: #8b8cf8;
+
+  --text: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #8888aa;
+
+  /* 主色：低饱和靛蓝紫 */
+  --accent: #5b5cf0;
+  --accent-hover: #4a4bdc;
+  --accent-fg: #ffffff;
+  --accent-light: #eeeeff;
+  --accent-mid: #c7c7fb;
+
+  /* 语义色调色板 */
+  --color-teal: #2d9e8a;
+  --color-teal-bg: #e6f5f2;
+  --color-amber: #b07b2a;
+  --color-amber-bg: #fdf3e0;
+  --color-rose: #c0434f;
+  --color-rose-bg: #fceef0;
+  --color-violet: #7c4dbd;
+  --color-violet-bg: #f0eafb;
+  --color-sky: #2a7ab5;
+  --color-sky-bg: #e5f2fb;
+  --color-green: #2e7d55;
+  --color-green-bg: #e6f5ee;
+
+  /* 来源徽章 */
+  --badge-arxiv-bg: #e5effc;
+  --badge-arxiv-fg: #1f5aa8;
+  --badge-semantic-bg: #e6f5ee;
+  --badge-semantic-fg: #1f6644;
+  --badge-pubmed-bg: #fdf3e0;
+  --badge-pubmed-fg: #8a5a10;
+  --badge-year-bg: #eeeef0;
+  --badge-year-fg: #555570;
+  --badge-citation-bg: #f0eafb;
+  --badge-citation-fg: #6b3aaa;
+
+  /* 分析模式徽章 */
+  --mode-a-bg: #e5effc;
+  --mode-a-fg: #1f5aa8;
+  --mode-b-bg: #e6f5ee;
+  --mode-b-fg: #1f6644;
+  --mode-c-bg: #fdf3e0;
+  --mode-c-fg: #8a5a10;
+
+  /* 分析结果：各节标题轮换色 */
+  --heading-color-1: #5b5cf0;
+  --heading-color-2: #2d9e8a;
+  --heading-color-3: #b07b2a;
+  --heading-color-4: #2a7ab5;
+  --heading-color-5: #c0434f;
+
+  --shadow-sm: 0 1px 3px rgba(91,92,240,0.06);
+  --shadow-md: 0 4px 16px rgba(91,92,240,0.10);
+  --shadow-card: 0 2px 8px rgba(26,26,46,0.06);
+  --radius: 10px;
+  --radius-sm: 6px;
+
+  --transition: 0.18s ease;
+}
+
+/* ===== 暗色主题 ===== */
+[data-theme="dark"] {
+  --bg: #13131f;
+  --bg-secondary: #1c1c2e;
+  --bg-card: #1e1e30;
+  --bg-hover: #28283e;
+  --border: #30304a;
+  --border-focus: #8b8cf8;
+
+  --text: #e8e8f5;
+  --text-secondary: #a0a0c0;
+  --text-muted: #606080;
+
+  --accent: #7b7cf5;
+  --accent-hover: #9394f8;
+  --accent-fg: #13131f;
+  --accent-light: #1f1f40;
+  --accent-mid: #3d3d70;
+
+  --color-teal: #4dbfa6;
+  --color-teal-bg: #112820;
+  --color-amber: #d4a040;
+  --color-amber-bg: #1f1600;
+  --color-rose: #e06070;
+  --color-rose-bg: #280e12;
+  --color-violet: #b080e0;
+  --color-violet-bg: #1e1030;
+  --color-sky: #5aa8df;
+  --color-sky-bg: #0e1e30;
+  --color-green: #5bbb88;
+  --color-green-bg: #0e2018;
+
+  --badge-arxiv-bg: #152540;
+  --badge-arxiv-fg: #7aaeee;
+  --badge-semantic-bg: #102818;
+  --badge-semantic-fg: #6ecf9e;
+  --badge-pubmed-bg: #1e1200;
+  --badge-pubmed-fg: #d4a040;
+  --badge-year-bg: #28283e;
+  --badge-year-fg: #a0a0c0;
+  --badge-citation-bg: #1e1030;
+  --badge-citation-fg: #c090e8;
+
+  --mode-a-bg: #152540;
+  --mode-a-fg: #7aaeee;
+  --mode-b-bg: #102818;
+  --mode-b-fg: #6ecf9e;
+  --mode-c-bg: #1e1200;
+  --mode-c-fg: #d4a040;
+
+  --heading-color-1: #7b7cf5;
+  --heading-color-2: #4dbfa6;
+  --heading-color-3: #d4a040;
+  --heading-color-4: #5aa8df;
+  --heading-color-5: #e06070;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ===== 重置与基础 ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 按钮 ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(91,92,240,0.22);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 4px 14px rgba(91,92,240,0.32);
+  text-decoration: none;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.btn--ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-focus);
+  text-decoration: none;
+}
+
+.btn--sm { padding: 4px 10px; font-size: 0.8rem; }
+.btn--lg { padding: 12px 28px; font-size: 1rem; letter-spacing: 0.01em; }
+.btn--full { width: 100%; justify-content: center; }
+
+/* ===== 徽章 ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.badge--source { }
+.badge--arxiv { background: var(--badge-arxiv-bg); color: var(--badge-arxiv-fg); }
+.badge--semantic { background: var(--badge-semantic-bg); color: var(--badge-semantic-fg); }
+.badge--pubmed { background: var(--badge-pubmed-bg); color: var(--badge-pubmed-fg); }
+.badge--year { background: var(--badge-year-bg); color: var(--badge-year-fg); }
+.badge--citation { background: var(--badge-citation-bg); color: var(--badge-citation-fg); }
+
+/* ===== 模式徽章 ===== */
+.mode-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.mode--a { background: var(--mode-a-bg); color: var(--mode-a-fg); }
+.mode--b { background: var(--mode-b-bg); color: var(--mode-b-fg); }
+.mode--c { background: var(--mode-c-bg); color: var(--mode-c-fg); }
+
+/* ===== Toast ===== */
+#pg-toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.pg-toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  background: #2a2a40;
+  color: #e8e8f5;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: auto;
+  min-width: 180px;
+}
+
+.pg-toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pg-toast--error { background: #9a2535; color: #fff; }
+.pg-toast--success { background: #1d6644; color: #fff; }
+
+/* ===== 加载动画 ===== */
+.pg-spin {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.pg-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--accent-mid);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.empty-state__icon {
+  font-size: 2rem;
+  opacity: 0.4;
+}
+
+/* ===== 工具类 ===== */
+.hidden { display: none !important; }

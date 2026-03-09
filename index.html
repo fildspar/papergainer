@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaperGainer — 学术论文 AI 分析</title>
+  <meta name="description" content="上传PDF，AI生成中文主要思路分析" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+
+  <nav class="pg-nav">
+    <a href="index.html" class="pg-nav__brand">PaperGainer</a>
+    <span class="pg-tagline">no papers, no pain.</span>
+    <div class="pg-nav__actions">
+      <a href="settings.html" class="btn btn--ghost btn--sm">⚙ 设置</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">◑</button>
+    </div>
+  </nav>
+
+  <main class="pg-container">
+
+    <div class="index-layout">
+
+      <!-- 左栏：主内容 -->
+      <div class="index-main">
+
+        <!-- 主上传区 -->
+        <section class="upload-hero">
+          <h1 class="upload-hero__title">论文 AI 分析</h1>
+          <p class="upload-hero__sub">上传PDF，选择分析模板，生成中文主要思路</p>
+
+          <!-- 拖拽上传区 -->
+          <div class="drop-zone" id="pg-drop-zone">
+            <input type="file" id="pg-file-input" accept=".pdf" multiple class="upload-input" />
+            <div class="drop-zone__inner">
+              <div class="drop-zone__icon">↑</div>
+              <div class="drop-zone__text">拖拽PDF到此处，或<label for="pg-file-input" class="drop-zone__browse">点击选择文件</label></div>
+              <div class="drop-zone__hint">支持同时上传多个PDF · 仅在本地解析，文件不会上传至任何服务器</div>
+            </div>
+          </div>
+
+          <!-- 已选文件列表 -->
+          <div id="pg-file-list" class="file-list hidden"></div>
+
+          <!-- 模板选择 -->
+          <div class="template-section" id="pg-template-section">
+            <div class="template-section__label">分析模板</div>
+            <div class="template-tabs" id="pg-template-tabs">
+              <!-- 由 JS 渲染 -->
+            </div>
+          </div>
+
+          <!-- 分析按钮 -->
+          <div class="analyze-actions">
+            <button class="btn btn--primary btn--lg" id="pg-analyze-btn" disabled>
+              开始 AI 分析
+            </button>
+          </div>
+        </section>
+
+        <!-- 论文获取导航 -->
+        <section class="site-nav-section">
+          <div class="site-nav__title">论文获取</div>
+          <p class="site-nav__hint">在以下平台找到论文后，下载 PDF 拖拽到上方分析</p>
+          <div class="site-nav-grid">
+
+            <!-- 学术搜索引擎 -->
+            <div class="site-nav-group">
+              <div class="site-nav-group__label">学术搜索</div>
+              <div class="site-nav-cards">
+                <a href="https://scholar.google.com" target="_blank" class="site-card site-card--amber">
+                  <span class="site-card__name">Google Scholar</span>
+                  <span class="site-card__desc">全学科广泛覆盖</span>
+                </a>
+                <a href="https://arxiv.org" target="_blank" class="site-card site-card--blue">
+                  <span class="site-card__name">arXiv</span>
+                  <span class="site-card__desc">CS / 物理 / 数学预印本</span>
+                </a>
+                <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" class="site-card site-card--green">
+                  <span class="site-card__name">PubMed</span>
+                  <span class="site-card__desc">生命科学 & 医学</span>
+                </a>
+                <a href="https://www.semanticscholar.org" target="_blank" class="site-card site-card--teal">
+                  <span class="site-card__name">Semantic Scholar</span>
+                  <span class="site-card__desc">AI 驱动语义检索</span>
+                </a>
+                <a href="https://xueshu.baidu.com" target="_blank" class="site-card site-card--sky">
+                  <span class="site-card__name">百度学术</span>
+                  <span class="site-card__desc">中英文论文检索</span>
+                </a>
+                <a href="https://www.researchgate.net" target="_blank" class="site-card site-card--violet">
+                  <span class="site-card__name">ResearchGate</span>
+                  <span class="site-card__desc">学术社交 & 全文请求</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 出版商数据库 -->
+            <div class="site-nav-group">
+              <div class="site-nav-group__label">出版商数据库</div>
+              <div class="site-nav-cards">
+                <a href="https://www.nature.com" target="_blank" class="site-card site-card--teal">
+                  <span class="site-card__name">Nature</span>
+                  <span class="site-card__desc">顶级综合科学期刊</span>
+                </a>
+                <a href="https://ieeexplore.ieee.org" target="_blank" class="site-card site-card--blue">
+                  <span class="site-card__name">IEEE Xplore</span>
+                  <span class="site-card__desc">电子 / 电气 / CS</span>
+                </a>
+                <a href="https://www.sciencedirect.com" target="_blank" class="site-card site-card--amber">
+                  <span class="site-card__name">ScienceDirect</span>
+                  <span class="site-card__desc">Elsevier 全文数据库</span>
+                </a>
+                <a href="https://onlinelibrary.wiley.com" target="_blank" class="site-card site-card--sky">
+                  <span class="site-card__name">Wiley Online</span>
+                  <span class="site-card__desc">跨学科期刊全文</span>
+                </a>
+                <a href="https://www.webofscience.com" target="_blank" class="site-card site-card--violet">
+                  <span class="site-card__name">Web of Science</span>
+                  <span class="site-card__desc">权威引文索引数据库</span>
+                </a>
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" class="site-card site-card--green">
+                  <span class="site-card__name">PubMed Central</span>
+                  <span class="site-card__desc">NIH 开放获取全文库</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 中文平台 & 免费获取 -->
+            <div class="site-nav-group">
+              <div class="site-nav-group__label">中文平台 & 免费获取</div>
+              <div class="site-nav-cards">
+                <a href="https://www.cnki.net" target="_blank" class="site-card site-card--rose">
+                  <span class="site-card__name">中国知网 CNKI</span>
+                  <span class="site-card__desc">中文期刊 / 学位论文</span>
+                </a>
+                <a href="https://sci-hub.se" target="_blank" class="site-card site-card--amber">
+                  <span class="site-card__name">Sci-Hub</span>
+                  <span class="site-card__desc">DOI 直接下载全文</span>
+                </a>
+                <a href="https://unpaywall.org" target="_blank" class="site-card site-card--teal">
+                  <span class="site-card__name">Unpaywall</span>
+                  <span class="site-card__desc">合法开放获取全文</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /index-main -->
+
+      <!-- 右栏：历史记录 -->
+      <aside class="index-sidebar">
+        <section class="history-section" id="pg-history-section">
+          <div class="history-header">
+            <span class="history-title">分析历史</span>
+            <button class="btn btn--ghost btn--sm" id="pg-clear-history">清空</button>
+          </div>
+          <div class="history-list" id="pg-history-list"></div>
+        </section>
+      </aside>
+
+    </div><!-- /index-layout -->
+
+  </main>
+
+  <!-- 分析进度遮罩 -->
+  <div class="analyze-overlay hidden" id="pg-overlay">
+    <div class="analyze-overlay__card">
+      <div class="pg-spinner"></div>
+      <div class="analyze-overlay__msg" id="pg-overlay-msg">正在解析PDF...</div>
+      <div class="analyze-overlay__file" id="pg-overlay-file"></div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/ai/minimax.js"></script>
+  <script src="js/ai/modes.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/detail.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

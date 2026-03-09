@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>设置 — PaperGainer</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <nav class="pg-nav">
+    <a href="index.html" class="pg-nav__brand">PaperGainer</a>
+    <div class="pg-nav__actions">
+      <a href="index.html" class="btn btn--ghost btn--sm">← 返回首页</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">◑</button>
+    </div>
+  </nav>
+
+  <main class="pg-container">
+    <div class="settings-page">
+
+      <h1 class="settings-page__title">设置</h1>
+      <p class="settings-page__sub">配置 AI API 和默认偏好，数据仅保存在本地浏览器中。</p>
+
+      <!-- AI API 配置 -->
+      <section class="settings-section">
+        <h2 class="settings-section__title">AI API 配置</h2>
+        <div class="settings-form">
+
+          <div class="form-group">
+            <label class="form-label" for="pg-api-base-url">Base URL</label>
+            <input
+              type="url"
+              id="pg-api-base-url"
+              class="form-input"
+              placeholder="https://api.minimax.chat/v1"
+              autocomplete="off"
+            />
+            <span class="form-hint">
+              国际版：<code>https://api.minimax.chat/v1</code><br/>
+              国内版：<code>https://api.minimaxi.com/v1</code>（需额外填写 GroupId）
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pg-api-key">API Key</label>
+            <div style="display:flex;gap:8px;">
+              <input
+                type="password"
+                id="pg-api-key"
+                class="form-input"
+                style="flex:1"
+                placeholder="eyJ..."
+                autocomplete="off"
+              />
+              <button id="pg-toggle-key" class="btn btn--ghost btn--sm" style="flex-shrink:0;">显示</button>
+            </div>
+            <span class="form-hint">API Key 仅存储在本地 localStorage，不会上传到任何服务器</span>
+          </div>
+
+          <div class="form-group" style="display:none">
+            <!-- GroupId 字段已废弃：minimaxi.com OpenAI兼容接口不需要GroupId -->
+            <input type="hidden" id="pg-api-group-id" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pg-api-model">模型名称</label>
+            <input
+              type="text"
+              id="pg-api-model"
+              class="form-input"
+              placeholder="MiniMax-Text-01"
+              autocomplete="off"
+            />
+            <span class="form-hint">填写 MiniMax 提供的模型 ID，例如 MiniMax-Text-01 或 abab6.5s-chat</span>
+          </div>
+
+          <hr class="form-divider" />
+
+          <!-- 预留扩展：未来可添加其他 Provider -->
+          <p class="form-hint" style="font-style:italic;">
+            未来版本将支持 OpenAI、Claude 等其他 API Provider。
+          </p>
+
+        </div>
+      </section>
+
+      <!-- 自定义提示词模板 -->
+      <section class="settings-section">
+        <h2 class="settings-section__title">自定义分析模板</h2>
+        <div class="settings-form">
+          <div class="form-group">
+            <label class="form-label" for="pg-custom-prompt">自定义提示词</label>
+            <textarea
+              id="pg-custom-prompt"
+              class="form-input"
+              rows="6"
+              style="resize:vertical;font-family:inherit;line-height:1.6;"
+              placeholder="在此输入你的自定义分析提示词，选择「自定义」模板时生效..."
+            ></textarea>
+            <span class="form-hint">在详情页选择「✦ 自定义」模板时，将使用此提示词生成分析内容</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 操作按钮 -->
+      <div class="form-actions">
+        <button id="pg-settings-save" class="btn btn--primary">保存配置</button>
+        <button id="pg-settings-reset" class="btn btn--ghost">重置为默认</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="js/config.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/sources/arxiv.js"></script>
+  <script src="js/sources/semantic.js"></script>
+  <script src="js/sources/pubmed.js"></script>
+  <script src="js/sources/index.js"></script>
+  <script src="js/ai/minimax.js"></script>
+  <script src="js/ai/modes.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/search.js"></script>
+  <script src="js/ui/card.js"></script>
+  <script src="js/ui/detail.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>论文分析 — PaperGainer</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+
+  <nav class="pg-nav">
+    <a href="index.html" class="pg-nav__brand">PaperGainer</a>
+    <div class="pg-nav__actions">
+      <a href="index.html" class="btn btn--ghost btn--sm">← 返回</a>
+      <a href="settings.html" class="btn btn--ghost btn--sm">⚙ 设置</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">◑</button>
+    </div>
+  </nav>
+
+  <main class="pg-container">
+    <div id="pg-detail-container"></div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/sources/arxiv.js"></script>
+  <script src="js/sources/semantic.js"></script>
+  <script src="js/sources/pubmed.js"></script>
+  <script src="js/sources/index.js"></script>
+  <script src="js/ai/minimax.js"></script>
+  <script src="js/ai/modes.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/search.js"></script>
+  <script src="js/ui/card.js"></script>
+  <script src="js/ui/detail.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
